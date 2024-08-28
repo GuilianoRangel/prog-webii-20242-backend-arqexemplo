@@ -11,6 +11,7 @@ public class CategoryServiceImpl extends GenericCrudWithValidationsService<Categ
     @Override
     protected void prepareToCreate(Category dado) {
         dado.setId(null);
+        dado.setName(dado.getName().toUpperCase());
     }
 
 }
