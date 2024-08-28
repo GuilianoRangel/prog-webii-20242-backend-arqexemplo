@@ -32,16 +32,7 @@ public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Lon
 
     }
 
-    @Override
-    protected void validateMandatoryFields(Task dado) {
-        if(
-                Strings.isEmpty(dado.getDescription())||
-                        (Objects.isNull(dado.getCategory()) ||
-                                dado.getCategory().getId()==null)
-        ){
-            //throw new MandatoryException("Campos obrigatórios não preenchidos");
-        }
-    }
+
 
     @Override
     public Task completedTask(Long id){
