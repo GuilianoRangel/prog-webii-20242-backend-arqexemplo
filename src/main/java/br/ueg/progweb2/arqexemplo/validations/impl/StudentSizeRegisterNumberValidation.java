@@ -1,10 +1,10 @@
 package br.ueg.progweb2.arqexemplo.validations.impl;
 
+import br.ueg.progweb2.arqexemplo.exceptions.AppMessageCode;
 import br.ueg.progweb2.arqexemplo.model.Student;
 import br.ueg.progweb2.arqexemplo.repository.StudentRepository;
 
-import br.ueg.progweb2.arquitetura.exceptions.BusinessLogicError;
-import br.ueg.progweb2.arquitetura.exceptions.BusinessLogicException;
+import br.ueg.progweb2.arquitetura.exceptions.BusinessException;
 import br.ueg.progweb2.arquitetura.validations.IValidations;
 import br.ueg.progweb2.arquitetura.validations.ValidationAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class StudentSizeRegisterNumberValidation implements IValidations<Student
                 ValidationAction.CREATE
         ).contains(action) ) {
             if(data.getRegisterNumber().length()>5){
-                throw new BusinessLogicException(BusinessLogicError.REGISTER_NUMBER_INVALID);
+                throw new BusinessException(AppMessageCode.REGISTER_NUMBER_INVALID);
             }
         }
     }
