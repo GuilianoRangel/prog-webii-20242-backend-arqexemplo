@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "${api.version}/person")
+@RequestMapping(path = "${app.api.base}/person")
 public class PersonController extends
         GenericCRUDController<
                 PersonDTO, // DTO Geral

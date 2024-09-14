@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "${api.version}/crud-student")
+@RequestMapping(path = "${app.api.base}/crud-student")
 public class StudentCRUDController extends GenericCRUDController<
         StudentDTO,
         StudentCreateDTO,

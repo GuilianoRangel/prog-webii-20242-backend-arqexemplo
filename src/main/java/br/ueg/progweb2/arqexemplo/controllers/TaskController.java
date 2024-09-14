@@ -12,8 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "${api.version}/task")
-@CrossOrigin()
+@RequestMapping(path = "${app.api.base}/task")
 public class TaskController extends
         GenericCRUDController<
                 TaskDTO, //DTO Geral
