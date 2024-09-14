@@ -1,14 +1,12 @@
 package br.ueg.progweb2.arqexemplo.service.impl;
 
+import br.ueg.progweb2.arqexemplo.exceptions.AppMessageCode;
 import br.ueg.progweb2.arqexemplo.model.Task;
 import br.ueg.progweb2.arqexemplo.repository.TaskRepository;
 import br.ueg.progweb2.arqexemplo.service.TaskService;
-import br.ueg.progweb2.arquitetura.exceptions.BusinessLogicException;
+import br.ueg.progweb2.arquitetura.exceptions.BusinessException;
 import br.ueg.progweb2.arquitetura.service.impl.GenericCrudWithValidationsService;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Long, TaskRepository> implements TaskService {
@@ -38,7 +36,7 @@ public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Lon
     public Task completedTask(Long id){
         Task task = this.getById(id);
         if(task.getCompleted()){
-            throw new BusinessLogicException("Tarefa já completada");
+            throw new BusinessException(AppMessageCode.TASK_ALREADY_COMPLETED);
         }
         task.setCompleted(true);
         task = repository.save(task);
