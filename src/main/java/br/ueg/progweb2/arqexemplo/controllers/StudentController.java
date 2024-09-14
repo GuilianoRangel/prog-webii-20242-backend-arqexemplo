@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "${api.version}/student")
+@RequestMapping(path = "${app.api.base}/student")
 public class StudentController {
 
     @Autowired

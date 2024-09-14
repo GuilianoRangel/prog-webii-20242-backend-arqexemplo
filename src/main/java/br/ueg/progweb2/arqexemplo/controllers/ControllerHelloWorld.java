@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping(path = "${api.version}/aula01")
+@RequestMapping(path = "${app.api.base}/aula01")
 public class ControllerHelloWorld {
 
     @Value("${configuracao.variavel}")

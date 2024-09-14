@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "${api.version}/category")
-@CrossOrigin()
+@RequestMapping(path = "${app.api.base}/category")
 public class CategoryController extends GenericCRUDController<
         CategoryDTO,
         CategoryDTO,
