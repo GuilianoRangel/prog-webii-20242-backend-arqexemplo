@@ -14,7 +14,8 @@ import br.ueg.progweb2.arquitetura.exceptions.MessageCode;
 public enum AppMessageCode implements MessageCode {
 	REGISTER_NUMBER_DUPLICATED("MSG-001", 400),
 	REGISTER_NUMBER_INVALID("MSG-002", 100),
-	TASK_ALREADY_COMPLETED("MSG-003", 200);
+	TASK_ALREADY_COMPLETED("MSG-003", 200),
+	CATEGORY_NAME_DUPLICATED("MSG-004", 400);
 
 	private final String code;
 
