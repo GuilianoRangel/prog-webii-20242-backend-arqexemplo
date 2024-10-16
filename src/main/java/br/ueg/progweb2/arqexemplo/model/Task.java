@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
+
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Getter
@@ -42,17 +44,6 @@ public  class Task implements GenericModel<Long> {
     @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = false, foreignKey = @ForeignKey(name = "fk_category_tipo"))
     private Category category;
 
-/*    @Override
-    public Map<String, Object> getFieldValues() {
-        HashMap<String, Object> maps = new HashMap<>();
-        maps.put("id",this.getId());
-        maps.put("description",this.getDescription());
-        maps.put("completed",this.getCompleted());
-        return maps;
-    }
-
-    @Override
-    public List<String> getMandatoryFields() {
-        return List.of("description");
-    }*/
+    @Column(name = "data_final")
+    private LocalDate dueDate;
 }
