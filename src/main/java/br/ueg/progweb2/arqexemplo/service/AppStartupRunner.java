@@ -4,14 +4,12 @@ import br.ueg.progweb2.arqexemplo.model.Category;
 import br.ueg.progweb2.arqexemplo.model.Student;
 import br.ueg.progweb2.arqexemplo.repository.CategoryRepository;
 import br.ueg.progweb2.arqexemplo.repository.StudentRepository;
+import br.ueg.progweb2.arquitetura.adminmodule.service.SecurityInitializeService;
 import br.ueg.progweb2.arquitetura.service.AbstractAppStartupRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 
@@ -27,8 +25,15 @@ public class AppStartupRunner extends AbstractAppStartupRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public void runInitData(){
+    @Autowired
+    private SecurityInitializeService securityInitializeService;
 
+    public void runInitData(){
+        this.securityInitializeService.initialize();
+        initDataArqExampleApplication();
+    }
+
+    private void initDataArqExampleApplication() {
         Student student = null;
         for (int i = 1; i<=30; i++){
             student = Student.builder()

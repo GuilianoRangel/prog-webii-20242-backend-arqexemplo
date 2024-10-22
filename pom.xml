@@ -68,7 +68,13 @@
 		<dependency>
 			<groupId>br.ueg.progweb2</groupId>
 			<artifactId>arquitetura-prog-web-ii</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>0.0.4-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>br.ueg.progweb2</groupId>
+			<artifactId>arquitetura-prog-web-ii-adminmodule</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
