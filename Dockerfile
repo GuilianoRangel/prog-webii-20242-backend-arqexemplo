@@ -7,6 +7,16 @@ ENV MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 WORKDIR /app/build
   # copy just pom.xml
 COPY pom.xml .
+
+RUN yum install git -y
+ADD "https://api.github.com/repos/GuilianoRangel/prog-webii-20242-backend-arquitetura/commits?per_page=1&sha=master" latest_commit
+RUN head -c 5 /dev/random > random_bytes && git clone https://github.com/GuilianoRangel/prog-webii-20242-backend-arquitetura.git
+RUN head -c 5 /dev/random > random_bytes && cd prog-webii-20242-backend-arquitetura && git checkout master && mvn dependency:go-offline && mvn clean install -Dmaven.test.skip=true && cd ..
+
+ADD "https://api.github.com/repos/GuilianoRangel/prog-webii-20242-backend-adminmodule/commits?per_page=1&sha=master" latest_commit
+RUN head -c 5 /dev/random > random_bytes && git clone https://github.com/GuilianoRangel/prog-webii-20242-backend-adminmodule.git
+RUN head -c 5 /dev/random > random_bytes && cd prog-webii-20242-backend-adminmodule && git checkout master && mvn dependency:go-offline && mvn clean install -Dmaven.test.skip=true && cd ..
+
   # go-offline using the pom.xml
 RUN mvn dependency:go-offline
 
