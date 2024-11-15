@@ -48,7 +48,7 @@ public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Lon
     }
 
     public Page<Task> getIncompleteTasks(Pageable pageable) {
-        return repository.findByCompletedFalse(pageable);
+        return repository.findByCompletedFalseOrCompletedIsNull(pageable);
     }
 
     public List<Task> getIncompleteTasks() {

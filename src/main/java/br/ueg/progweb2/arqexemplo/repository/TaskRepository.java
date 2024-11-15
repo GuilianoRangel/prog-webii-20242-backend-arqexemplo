@@ -12,7 +12,7 @@ import java.util.List;
 public interface TaskRepository
         extends JpaRepository<Task, Long> {
 
-    Page<Task> findByCompletedFalse(Pageable pageable);
+    Page<Task> findByCompletedFalseOrCompletedIsNull(Pageable pageable);
 
     List<Task> findByCompletedFalse();
 }
