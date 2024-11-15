@@ -2,8 +2,10 @@ package br.ueg.progweb2.arqexemplo.service;
 
 import br.ueg.progweb2.arqexemplo.model.Category;
 import br.ueg.progweb2.arqexemplo.model.Student;
+import br.ueg.progweb2.arqexemplo.model.Task;
 import br.ueg.progweb2.arqexemplo.repository.CategoryRepository;
 import br.ueg.progweb2.arqexemplo.repository.StudentRepository;
+import br.ueg.progweb2.arqexemplo.repository.TaskRepository;
 import br.ueg.progweb2.arquitetura.adminmodule.service.SecurityInitializeService;
 import br.ueg.progweb2.arquitetura.service.AbstractAppStartupRunner;
 import org.slf4j.Logger;
@@ -24,6 +26,9 @@ public class AppStartupRunner extends AbstractAppStartupRunner {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     @Autowired
     private SecurityInitializeService securityInitializeService;
@@ -48,10 +53,15 @@ public class AppStartupRunner extends AbstractAppStartupRunner {
         Category cat1 = Category.builder().name("Prioridade Baixa").build();
         Category cat2 = Category.builder().name("Prioridade Média").build();
         Category cat3 = Category.builder().name("Prioridade Alta").build();
-        categoryRepository.save(cat1);
-        categoryRepository.save(cat2);
-        categoryRepository.save(cat3);
+        cat1 = categoryRepository.save(cat1);
+        cat2 = categoryRepository.save(cat2);
+        cat3 = categoryRepository.save(cat3);
         LOG.info("Fim da execução");
+
+        for(int i=0; i < 1000; i++){
+            Task t = Task.builder().description("Tarefa "+i).category(i%2==0?cat1:cat2).build();
+            taskRepository.save(t);
+        }
     }
 
 }

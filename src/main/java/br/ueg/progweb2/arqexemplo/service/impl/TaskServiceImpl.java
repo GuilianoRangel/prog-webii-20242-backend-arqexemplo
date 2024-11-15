@@ -6,7 +6,11 @@ import br.ueg.progweb2.arqexemplo.repository.TaskRepository;
 import br.ueg.progweb2.arqexemplo.service.TaskService;
 import br.ueg.progweb2.arquitetura.exceptions.BusinessException;
 import br.ueg.progweb2.arquitetura.service.impl.GenericCrudWithValidationsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Long, TaskRepository> implements TaskService {
@@ -41,5 +45,13 @@ public class TaskServiceImpl extends GenericCrudWithValidationsService<Task, Lon
         task.setCompleted(true);
         task = repository.save(task);
         return task;
+    }
+
+    public Page<Task> getIncompleteTasks(Pageable pageable) {
+        return repository.findByCompletedFalse(pageable);
+    }
+
+    public List<Task> getIncompleteTasks() {
+        return repository.findByCompletedFalse();
     }
 }
