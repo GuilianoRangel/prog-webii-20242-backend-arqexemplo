@@ -25,7 +25,7 @@ public class SecurityConfig extends ApiSecurityConfig {
     @Override
     protected List<String> getCustomFreeAccessPaterns() {
         return List.of(
-                path.concat("/initialize-admin-user/**")
+                path.concat("/user/initialize-admin-user/**")
         );
     }
 }
