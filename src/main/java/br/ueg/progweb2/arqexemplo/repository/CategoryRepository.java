@@ -2,13 +2,14 @@ package br.ueg.progweb2.arqexemplo.repository;
 
 import br.ueg.progweb2.arqexemplo.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
 public interface CategoryRepository
-        extends JpaRepository<Category, Long> {
+        extends JpaRepository<Category, Long>, JpaSpecificationExecutor<Category> {
 
         Optional<Category> findByName(String name);
 }

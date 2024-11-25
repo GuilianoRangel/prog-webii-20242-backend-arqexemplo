@@ -1,7 +1,9 @@
 
 package br.ueg.progweb2.arqexemplo.model;
 
+import br.ueg.progweb2.arquitetura.interfaces.ISearchFieldData;
 import br.ueg.progweb2.arquitetura.model.GenericModel;
+import br.ueg.progweb2.arquitetura.model.annotation.Searchable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -17,7 +19,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "CATEGORY")
-public  class Category implements GenericModel<Long> {
+public  class Category implements GenericModel<Long>, ISearchFieldData<Long> {
 
     @Id
     @SequenceGenerator(
@@ -30,10 +32,16 @@ public  class Category implements GenericModel<Long> {
             generator = "category_sequence"
     )
     @Column(name = "id", nullable = false)
+    @Searchable(label = "ID")
     private Long id;
 
     @NotNull
     @Column(name = "nome",  nullable = false, length = 40)
+    @Searchable(label = "Nome", autoComplete = true)
     private String name;
 
+    @Override
+    public String getSearchDescription() {
+        return this.getId() + " - "+this.getName();
+    }
 }
